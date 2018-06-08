@@ -1,3 +1,5 @@
+import Behavior.CoreLife
+
 object Graveyard : CoreLife { // was Core
 
     override fun onStart() {
