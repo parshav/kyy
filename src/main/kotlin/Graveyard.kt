@@ -1,20 +1,22 @@
 import Behavior.CoreLife
+import java.math.BigInteger
 
 object Graveyard : CoreLife { // was Core
 
     override fun onStart() {
         //assertEquals(expected = "aehrsty", actual = longest("aretheyhere", "yestheyarehere"))
-        if (longest("aretheyhere", "yestheyarehere") == "aehrsty")
+        /*if (longest("aretheyhere", "yestheyarehere") == "aehrsty")
             println("we good")
         else {
             println("Test Fail : Actual Output -> ")
             println(longest("aretheyhere", "yestheyarehere"))
-        }
+        }*/
         //arethy   yesthar
         //aehrty  aehrsty
         //        aehrsty
-        val a = dd(10,1)
-        println("Middle : ${middle("midsle")}")
+        //val a = dd(10,1)
+        //println("Middle : ${middle("midsle")}")
+        print("2 : ${fn(4)}")
     }
 
     fun longest(a: String, b: String): String{
@@ -53,6 +55,21 @@ object Graveyard : CoreLife { // was Core
 
     fun genA(price: Int, times: Int): Int {
         return price * times
+    }
+
+
+    fun fn(x: Int, y: Int, z: Int, n: Int) {
+        var cache: Array<Int> = arrayOf(1,2)
+        (6 * x * y) - (5 * x * z) + (y * z)
+    }
+
+    fun fn(n: Int): BigInteger {
+        //var a = 1
+        var a: BigInteger = BigInteger.valueOf(1)
+        for (i in 1..n) {
+            a *= BigInteger.valueOf(2)
+        }
+        return a
     }
 
     override fun onEnd() {
