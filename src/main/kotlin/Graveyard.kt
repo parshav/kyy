@@ -1,4 +1,5 @@
 import Behavior.CoreLife
+import org.jetbrains.annotations.TestOnly
 import java.math.BigInteger
 
 object Graveyard : CoreLife { // was Core
@@ -16,7 +17,22 @@ object Graveyard : CoreLife { // was Core
         //        aehrsty
         //val a = dd(10,1)
         //println("Middle : ${middle("midsle")}")
-        print("2 : ${fn(4)}")
+        //print("2 : ${fn(4)}")
+
+        print("multi : ${multiReplace("HI }")}")
+        /*'('.ascii()
+        ')'.ascii()
+        ')'.ascii()
+        '('.ascii()
+        '<'.ascii()
+        '>'.ascii()
+        '>'.ascii()
+        '<'.ascii()
+        '{'.ascii()
+        '}'.ascii()
+        '}'.ascii()
+        '{'.ascii()*/
+        mutF(1)
     }
 
     fun longest(a: String, b: String): String{
@@ -56,13 +72,6 @@ object Graveyard : CoreLife { // was Core
     fun genA(price: Int, times: Int): Int {
         return price * times
     }
-
-
-    fun fn(x: Int, y: Int, z: Int, n: Int) {
-        var cache: Array<Int> = arrayOf(1,2)
-        (6 * x * y) - (5 * x * z) + (y * z)
-    }
-
     fun fn(n: Int): BigInteger {
         //var a = 1
         var a: BigInteger = BigInteger.valueOf(1)
@@ -70,6 +79,51 @@ object Graveyard : CoreLife { // was Core
             a *= BigInteger.valueOf(2)
         }
         return a
+    }
+    fun multiReplace(s: String): String {
+        //return s.map{when(it){'('->')'')'->'(''<'->'>''>'->'<''{'->'}''}'->'{' else->it}}.joinToString("")
+        /*return s.map {
+            when(it) {
+                '<','{'->it+2
+                '>','}'->it-2
+                '('->it+1
+                ')'->it-1
+                else -> it
+            }
+        }.joinToString("")*/
+        return s.map{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}.joinToString("")
+    }
+
+    //fun f(s:String):String=s.map{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}.joinToString("")
+
+    fun Char.ascii() {
+        println("$this : ${this.toInt()}")
+    }
+
+    /*when (c) {
+        '(' -> ')'
+        ')' -> '('
+        '<' -> '>'
+        '>' -> '<'
+        '{' -> '}'
+        '}' -> '{'
+        else -> c
+    }*/
+
+    fun mutF(n: Int): Int {
+        return if (n == 0) {
+            1
+        } else {
+            n - mutM(mutF(n - 1))
+        }
+    }
+
+    fun mutM(n: Int): Int {
+        return if (n == 0) {
+            0
+        } else {
+            n - mutF(mutM(n - 1))
+        }
     }
 
     override fun onEnd() {
