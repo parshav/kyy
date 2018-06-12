@@ -1,6 +1,8 @@
 import Behavior.CoreLife
 import org.jetbrains.annotations.TestOnly
 import java.math.BigInteger
+import kotlin.math.nextDown
+import kotlin.math.roundToInt
 
 object Graveyard : CoreLife { // was Core
 
@@ -19,7 +21,7 @@ object Graveyard : CoreLife { // was Core
         //println("Middle : ${middle("midsle")}")
         //print("2 : ${fn(4)}")
 
-        print("multi : ${multiReplace("HI }")}")
+//        print("multi : ${multiReplace("HI }")}")
         /*'('.ascii()
         ')'.ascii()
         ')'.ascii()
@@ -32,7 +34,9 @@ object Graveyard : CoreLife { // was Core
         '}'.ascii()
         '}'.ascii()
         '{'.ascii()*/
-        mutF(1)
+//        mutF(1)
+        print(wallpaper(6.3, 4.5, 3.29))
+//        wallpaper(4.toDouble(), 3.5, 3.toDouble())
     }
 
     fun longest(a: String, b: String): String{
@@ -123,6 +127,34 @@ object Graveyard : CoreLife { // was Core
             0
         } else {
             n - mutF(mutM(n - 1))
+        }
+    }
+
+    fun wallpaper(l: Double, w: Double, h: Double): String {
+        // your code
+        return if (h * l * w == 0.0) "zero" else when ((((l * h * 2) + (w * h * 2)) / 5.2).let { it + (it * .15) + 1 }.toInt()) {
+            0 -> "zero"
+            1 -> "one"
+            2 -> "two"
+            3 -> "three"
+            4 -> "four"
+            5 -> "five"
+            6 -> "six"
+            7 -> "seven"
+            8 -> "eight"
+            9 -> "nine"
+            10 -> "ten"
+            11 -> "eleven"
+            12 -> "twelve"
+            13 -> "thirteen"
+            14 -> "fourteen"
+            15 -> "fifteen"
+            16 -> "sixteen"
+            17 -> "seventeen"
+            18 -> "eighteen"
+            19 -> "nineteen"
+            20 -> "twenty"
+            else -> ""
         }
     }
 
