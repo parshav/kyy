@@ -8,8 +8,18 @@ class Playground {
             is stealth -> abc.int
         }
     }
+
+    companion object {
+        fun maker() {
+            print("this is the maker")
+        }
+    }
 }
 
+fun tes() {
+    val a = Playground
+    a.maker()
+}
 sealed class Fighter
 sealed class Winner
 
