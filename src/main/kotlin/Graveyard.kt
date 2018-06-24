@@ -35,8 +35,11 @@ object Graveyard : CoreLife { // was Core
         '}'.ascii()
         '{'.ascii()*/
 //        mutF(1)
-        print(wallpaper(6.3, 4.5, 3.29))
+//        print(wallpaper(6.3, 4.5, 3.29))
 //        wallpaper(4.toDouble(), 3.5, 3.toDouble())
+//        println("potato : ${potato(99, 100, 98)}")
+//        println("potato : ${potato(82, 127, 80)}")
+//        bbgl()
     }
 
     fun longest(a: String, b: String): String{
@@ -157,6 +160,9 @@ object Graveyard : CoreLife { // was Core
             else -> ""
         }
     }
+
+    // casting issues
+    fun potato(p0: Int, w0: Int, p1: Int): Int = (w0 - ((p0 * w0).toDouble() / 100)).let { (it * 100) / (100 - p1) }.toInt()
 
     override fun onEnd() {
 
