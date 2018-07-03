@@ -11,8 +11,18 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.10" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.10" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.10" level="project" />
+    <orderEntry type="library" name="Gradle: io.arrow-kt:arrow-syntax:0.7.2" level="project" />
+    <orderEntry type="library" name="Gradle: io.arrow-kt:arrow-instances-data:0.7.2" level="project" />
+    <orderEntry type="library" name="Gradle: io.arrow-kt:arrow-data:0.7.2" level="project" />
+    <orderEntry type="library" name="Gradle: io.arrow-kt:arrow-instances-core:0.7.2" level="project" />
+    <orderEntry type="library" name="Gradle: io.arrow-kt:arrow-typeclasses:0.7.2" level="project" />
+    <orderEntry type="library" name="Gradle: io.arrow-kt:arrow-core:0.7.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.kittinunf.fuel:fuel:1.13.0" level="project" />
+    <orderEntry type="library" name="Gradle: io.arrow-kt:arrow-annotations:0.7.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.kittinunf.result:result:1.4.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.41" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.41" level="project" />
+    <orderEntry type="library" name="Gradle: io.kindedj:kindedj:1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
   </component>
 </module>
