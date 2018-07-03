@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.arrow-kt:arrow-typeclasses:0.7.2@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.arrow-kt/arrow-typeclasses/0.7.2/c22cfbdc8545f37f5c1dfc5c4be275731519eb5b/arrow-typeclasses-0.7.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.arrow-kt/arrow-typeclasses/0.7.2/26086f0646f01554a8382fbcfb4f56267d7020b4/arrow-typeclasses-0.7.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
