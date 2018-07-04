@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "androidx.navigation.safeargs"
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -27,19 +29,30 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    implementation 'com.google.android.material:material:1.0.0-alpha1'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-alpha1'
 
-    implementation 'io.arrow-kt:arrow-core:0.7.2'
-    implementation 'io.arrow-kt:arrow-syntax:0.7.2'
-    implementation 'io.arrow-kt:arrow-typeclasses:0.7.2'
-    implementation 'io.arrow-kt:arrow-data:0.7.2'
-    implementation 'io.arrow-kt:arrow-instances-core:0.7.2'
-    implementation 'io.arrow-kt:arrow-instances-data:0.7.2'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
+
+    // TODO : Either of these is breaking deps
+//    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version" // use -ktx for Kotlin
+//    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+
+    implementation "io.arrow-kt:arrow-core:$arw_version"
+    implementation "io.arrow-kt:arrow-syntax:$arw_version"
+    implementation "io.arrow-kt:arrow-typeclasses:$arw_version"
+    implementation "io.arrow-kt:arrow-data:$arw_version"
+    implementation "io.arrow-kt:arrow-instances-core:$arw_version"
+    implementation "io.arrow-kt:arrow-instances-data:$arw_version"
+
+    implementation 'com.github.kittinunf.fuel:fuel-android:1.13.0' //for Android
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+}
+
+repositories {
+    jcenter()
 }
