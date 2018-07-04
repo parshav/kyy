@@ -19,8 +19,8 @@ object EndPoints {
 fun String.toEndpoint() = "${EndPoints.url}$this"
 
 fun getNextTen(path: String = "/launch/next/10"): IO<LaunchResponse> = IO {
-    val (_, response, _) = path.toEndpoint().httpGet().responseString()
-    if ("".isNotEmpty()) LaunchResponse.right(LaunchResult.LaunchData(""))
+    val (_, resp, _) = path.toEndpoint().httpGet().responseString()
+    if (resp.responseMessage.isNotEmpty()) LaunchResponse.right(LaunchResult.LaunchData(""))
     else LaunchResponse.left(LaunchResult.NetworkError)
 }
 

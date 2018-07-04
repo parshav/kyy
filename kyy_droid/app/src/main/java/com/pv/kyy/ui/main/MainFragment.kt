@@ -41,8 +41,7 @@ class MainFragment : Fragment() {
         super.onStart()
 
         val launchResponse = getNextTen().unsafeRunSync()
-        Log.d("pv", "$launchResponse")
+        Log.d("pv", "launch ; $launchResponse")
 //        getNextTenByFuel()
     }
-
 }
