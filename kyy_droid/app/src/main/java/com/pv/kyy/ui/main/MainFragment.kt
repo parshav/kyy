@@ -1,14 +1,18 @@
 package com.pv.kyy.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.pv.kyy.R
+import com.pv.kyy.networking.EndPoints
+import com.pv.kyy.networking.getNextTen
 
 class MainFragment : Fragment() {
+
+    private val endpoint = EndPoints
 
     companion object {
         fun newInstance() = MainFragment()
@@ -25,6 +29,12 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+//        endpoint.getNextTen().attempt()
     }
 
 }
