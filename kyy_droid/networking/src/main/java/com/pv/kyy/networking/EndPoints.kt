@@ -1,5 +1,6 @@
 package com.pv.kyy.networking
 
+import android.util.Log
 import arrow.core.Either
 import arrow.effects.IO
 import com.github.kittinunf.fuel.httpGet
@@ -17,16 +18,15 @@ object EndPoints {
 
 fun String.toEndpoint() = "${EndPoints.url}$this"
 
-fun EndPoints.getNextTen(path: String = "/next/10"): IO<LaunchResponse> = IO {
+fun getNextTen(path: String = "/launch/next/10"): IO<LaunchResponse> = IO {
     val (_, response, _) = path.toEndpoint().httpGet().responseString()
-    if (response.responseMessage.isNotEmpty()) LaunchResponse.right(LaunchResult.LaunchData(""))
+    if ("".isNotEmpty()) LaunchResponse.right(LaunchResult.LaunchData(""))
     else LaunchResponse.left(LaunchResult.NetworkError)
 }
 
-/*
 // Using fuel lambda
-fun EndPoints.getNextTen(path: String = "/next/10"): LaunchResult {
-    path.toEndpoint().httpGet().responseString { _, response, result ->
-
+fun getNextTenByFuel(path: String = "/launch/next/10") {
+    path.toEndpoint().httpGet().responseString { _, response, _ ->
+        Log.d("pv", "got response : ${response.responseMessage}")
     }
-}*/
+}
