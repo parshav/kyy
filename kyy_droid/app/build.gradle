@@ -36,8 +36,26 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
 
     // TODO : Either of these is breaking deps
-//    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version" // use -ktx for Kotlin
-//    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    implementation ("android.arch.navigation:navigation-fragment-ktx:$nav_version") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+    implementation ("android.arch.navigation:navigation-ui-ktx:$nav_version") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+    implementation ("android.arch.navigation:navigation-runtime-ktx:$nav_version") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+    implementation ("androidx.core:core-ktx:1.0.0-alpha1") {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
 
     implementation "io.arrow-kt:arrow-core:$arw_version"
     implementation "io.arrow-kt:arrow-syntax:$arw_version"
