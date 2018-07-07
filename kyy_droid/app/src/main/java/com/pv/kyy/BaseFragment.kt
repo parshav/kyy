@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.pv.kyy.ui.main.MainFragment
+import arrow.core.None
+import arrow.core.Option
+import arrow.core.Some
 import com.pv.kyy.ui.main.MainViewModel
 
 abstract class BaseFragment : Fragment() {
@@ -14,7 +16,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        return inflater.inflate(layout(), container, false)
+        return inflater.inflate(layout().fetch(), container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -22,5 +24,17 @@ abstract class BaseFragment : Fragment() {
 //        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
     }
-    abstract fun layout(): Int
+
+    override fun onStart() {
+        super.onStart()
+        start()
+    }
+    abstract fun layout(): Option<LayoutRes>
+
+    abstract fun start()
+}
+
+fun Option<LayoutRes>.fetch(): LayoutRes = when (this) {
+    is Some -> this.t
+    is None -> R.layout.default_layout
 }

@@ -3,8 +3,11 @@ package com.pv.kyy
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import arrow.core.Option
 import com.pv.kyy.Arw.Core
 import com.pv.kyy.ui.main.MainFragment
+
+typealias LayoutRes = Int
 
 abstract class BaseActivity : AppCompatActivity() {
 
