@@ -16,7 +16,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        return inflater.inflate(layout().fetch(), container, false)
+        return inflater.inflate(layout().unwrap(), container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,12 +29,12 @@ abstract class BaseFragment : Fragment() {
         super.onStart()
         start()
     }
-    abstract fun layout(): Option<LayoutRes>
+    abstract fun layout(): LayoutId
 
     abstract fun start()
 }
 
-fun Option<LayoutRes>.fetch(): LayoutRes = when (this) {
+fun LayoutId.unwrap(): Int = when (this) {
     is Some -> this.t
     is None -> R.layout.default_layout
 }
