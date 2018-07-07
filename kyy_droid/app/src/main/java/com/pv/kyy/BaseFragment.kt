@@ -31,7 +31,7 @@ abstract class BaseFragment : Fragment() {
         super.onStart()
         start()
         when (runFn()) {
-            is Some -> runFn().some()
+            is Some -> Log.d("pv", "run : ${runFn().some()}")
             is None -> Log.d("pv", "Failed")
         }
     }
@@ -39,7 +39,7 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun start()
 
-    open fun runFn(): Option<() -> Boolean> = None
+    open fun runFn(): FragmentFunction = None
 }
 
 fun LayoutId.unwrap(): Int = when (this) {

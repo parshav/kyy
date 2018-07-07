@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import arrow.core.Option
 
 typealias LayoutId = Option<Int>
-typealias FragmentFunctions<T> = Array<() -> T>
+typealias FragmentFunction = Option<() -> Boolean>
 
 abstract class BaseActivity : AppCompatActivity() {
 
