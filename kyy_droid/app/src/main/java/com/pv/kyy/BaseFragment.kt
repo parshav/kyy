@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import arrow.core.None
-import arrow.core.Option
-import arrow.core.Some
-import arrow.core.some
+import arrow.core.*
 import com.pv.kyy.ui.main.MainViewModel
+import com.pv.kyy.ui.main.NextFiveData
 
 abstract class BaseFragment : Fragment() {
 
@@ -34,12 +32,24 @@ abstract class BaseFragment : Fragment() {
             is Some -> Log.d("pv", "run : ${runFn().some()}")
             is None -> Log.d("pv", "Failed")
         }
+
+        fetch().map {
+            when (it) {
+                is LaunchData.LaunchNextAmount -> {
+                    Log.d("pv", "Fetch network data")
+                }
+                else -> {}
+            }
+        }
     }
     abstract fun layout(): LayoutId
 
     abstract fun start()
 
+    open fun fetch(): Either<None, LaunchData> = None.left()
+
     open fun runFn(): FragmentFunction = None
+
 }
 
 fun LayoutId.unwrap(): Int = when (this) {

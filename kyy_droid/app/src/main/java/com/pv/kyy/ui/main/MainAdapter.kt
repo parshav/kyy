@@ -8,4 +8,5 @@ class MainAdapter(
 ) : BaseRecyclerAdapter() {
 
     override fun layout(): LayoutId = itemLayout
+
 }

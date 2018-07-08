@@ -8,6 +8,11 @@ import arrow.core.Option
 typealias LayoutId = Option<Int>
 typealias FragmentFunction = Option<() -> Boolean>
 
+sealed class LaunchData {
+    object NoDataError : LaunchData()
+    class LaunchNextAmount : LaunchData()
+}
+
 abstract class BaseActivity : AppCompatActivity() {
 
     final override fun onCreate(savedInstanceState: Bundle?) {

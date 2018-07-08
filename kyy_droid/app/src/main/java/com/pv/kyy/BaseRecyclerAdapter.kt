@@ -13,8 +13,7 @@ abstract class BaseRecyclerAdapter(
         return BaseViewHolder(v)
     }
 
-    final override fun getItemCount(): Int {
-    }
+    final override fun getItemCount(): Int = 0
 
     final override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
     }
