@@ -7,12 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import arrow.core.*
+import com.pv.kyy.networking.EndPoints
+import com.pv.kyy.networking.LaunchResult
+import com.pv.kyy.networking.NewLaunchData
+import com.pv.kyy.networking.getNextTenByFuel
 import com.pv.kyy.ui.main.MainViewModel
 import com.pv.kyy.ui.main.NextFiveData
 
 abstract class BaseFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
+    private val endpoints = EndPoints
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -27,7 +32,6 @@ abstract class BaseFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        start()
         when (runFn()) {
             is Some -> Log.d("pv", "run : ${runFn().some()}")
             is None -> Log.d("pv", "Failed")
@@ -37,6 +41,8 @@ abstract class BaseFragment : Fragment() {
             when (it) {
                 is LaunchData.LaunchNextAmount -> {
                     Log.d("pv", "Fetch network data")
+//                    endpoints.getNextTenByFuel()
+                    dataUpdate(LaunchResult.LaunchData("").right())
                 }
                 else -> {}
             }
@@ -44,7 +50,7 @@ abstract class BaseFragment : Fragment() {
     }
     abstract fun layout(): LayoutId
 
-    abstract fun start()
+    abstract fun dataUpdate(data: NewLaunchData)
 
     open fun fetch(): Either<None, LaunchData> = None.left()
 
