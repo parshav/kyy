@@ -7,6 +7,7 @@ import arrow.core.*
 import com.pv.kyy.*
 import com.pv.kyy.networking.LaunchResult
 import com.pv.kyy.networking.NewLaunchData
+import io.reactivex.subjects.BehaviorSubject
 import kotlin.properties.Delegates
 
 typealias NextFiveData = Either<LaunchData.NoDataError, LaunchData.LaunchNextAmount>
@@ -20,6 +21,8 @@ object MainFragment : BaseFragment() {
             Log.d("pv", "Delegate Data $new")
         }
 
+    private val dataObservable: BehaviorSubject<NewLaunchData> = BehaviorSubject.create()
+
     private val setupRecyclerView= {
         recyclerView
         true
@@ -28,6 +31,20 @@ object MainFragment : BaseFragment() {
     override fun dataUpdate(data: NewLaunchData) {
         this.data = data
     }
+
+    override fun subscribeForData() {
+        dataObservable.subscribe {
+            it.fold(
+                    {
+                        Log.d("pv", "error")
+                    },
+                    {
+                        Log.d("pv", "Success")
+                    }
+            )
+        }
+    }
+    override fun dataObservable() = dataObservable
 
     override fun layout(): LayoutId = none()
 

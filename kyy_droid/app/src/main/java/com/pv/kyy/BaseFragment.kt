@@ -12,7 +12,7 @@ import com.pv.kyy.networking.LaunchResult
 import com.pv.kyy.networking.NewLaunchData
 import com.pv.kyy.networking.getNextTenByFuel
 import com.pv.kyy.ui.main.MainViewModel
-import com.pv.kyy.ui.main.NextFiveData
+import io.reactivex.subjects.BehaviorSubject
 
 abstract class BaseFragment : Fragment() {
 
@@ -32,6 +32,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        subscribeForData()
         when (runFn()) {
             is Some -> Log.d("pv", "run : ${runFn().some()}")
             is None -> Log.d("pv", "Failed")
@@ -41,16 +42,22 @@ abstract class BaseFragment : Fragment() {
             when (it) {
                 is LaunchData.LaunchNextAmount -> {
                     Log.d("pv", "Fetch network data")
-//                    endpoints.getNextTenByFuel()
-                    dataUpdate(LaunchResult.LaunchData("").right())
+                    endpoints.getNextTenByFuel(dataObservable = dataObservable())
+//                    dataUpdate(LaunchResult.LaunchData("").right())
                 }
-                else -> {}
+                else -> {
+                }
             }
         }
     }
+
     abstract fun layout(): LayoutId
 
     abstract fun dataUpdate(data: NewLaunchData)
+
+    abstract fun dataObservable(): BehaviorSubject<NewLaunchData>
+
+    open fun subscribeForData() {}
 
     open fun fetch(): Either<None, LaunchData> = None.left()
 
