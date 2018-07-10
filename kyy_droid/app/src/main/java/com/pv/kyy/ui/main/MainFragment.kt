@@ -74,6 +74,7 @@ object MainFragment : BaseFragment() {
             )
         }
     }
+
     override fun dataObservable() = dataObservable
 
     override fun layout(): LayoutId = none()
