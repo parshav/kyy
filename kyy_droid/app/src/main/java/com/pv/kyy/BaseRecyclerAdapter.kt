@@ -4,8 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.pv.kyy.networking.LaunchResult
+import java.io.Serializable
 
-abstract class BaseRecyclerAdapter(
+//class RecyclerData<T : LaunchResult>(elements: Array<T>) : Serializable
+typealias recyclerdata = Pair<LaunchResult, LayoutId>
+
+class BaseRecyclerAdapter(
+     recyclerData: recyclerdata
 ) : RecyclerView.Adapter<BaseViewHolder>() {
 
     final override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -20,4 +26,5 @@ abstract class BaseRecyclerAdapter(
     abstract fun layout(): LayoutId
 }
 
-class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+}

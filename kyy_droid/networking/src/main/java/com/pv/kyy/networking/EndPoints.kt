@@ -21,8 +21,8 @@ var EndpointListener by Delegates.observable<Either<LaunchErrors, LaunchResult>>
 
 sealed class LaunchResult {
     object InitialState : LaunchResult()
-    class LaunchData(private val data: String) : LaunchResult()
-    class LaunchTen(private val data: NextFiveDataClass) : LaunchResult()
+    class LaunchData(val data: String) : LaunchResult()
+    class LaunchTen(val data: NextFiveDataClass) : LaunchResult()
 }
 
 sealed class LaunchErrors {

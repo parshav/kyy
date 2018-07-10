@@ -41,7 +41,6 @@ abstract class BaseFragment : Fragment() {
         fetch().map {
             when (it) {
                 is LaunchData.LaunchNextAmount -> {
-                    Log.d("pv", "Fetch network data")
                     endpoints.getNextTenByFuel(dataObservable = dataObservable())
 //                    dataUpdate(LaunchResult.LaunchData("").right())
                 }
