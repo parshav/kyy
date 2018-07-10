@@ -2,15 +2,38 @@ package com.pv.kyy.ui.main
 
 //import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.View
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import arrow.core.*
+import arrow.product
 import com.pv.kyy.*
 import com.pv.kyy.networking.LaunchResult
 import com.pv.kyy.networking.NewLaunchData
+import com.pv.kyy.networking.NextFiveData.Launche
 import io.reactivex.subjects.BehaviorSubject
 import kotlin.properties.Delegates
 
 typealias NextFiveData = Either<LaunchData.NoDataError, LaunchData.LaunchNextAmount>
+typealias NextFiveRecyclerData = Pair<LaunchResult.LaunchTen, LayoutId>
+
+interface RecyclerDataBinder {
+    fun bind()
+}
+
+class NextFiveItemBinder(private val launch: Launche, private val itemView: View): RecyclerDataBinder {
+
+    private val name by lazy { itemView.findViewById<TextView>(R.id.tv_name) }
+    private val startTime by lazy { itemView.findViewById<TextView>(R.id.tv_start_time) }
+    private val agency by lazy { itemView.findViewById<TextView>(R.id.tv_agency_name) }
+
+    override fun bind() {
+        name.text = launch.name
+        startTime.text = launch.windowstart
+        agency.text = launch.lsp.name
+    }
+}
 
 object MainFragment : BaseFragment() {
 
@@ -38,8 +61,15 @@ object MainFragment : BaseFragment() {
                     {
                         Log.d("pv", "error")
                     },
-                    {
-                        Log.d("pv", "Success")
+                    { res ->
+                        when (res) {
+                            is LaunchResult.LaunchTen ->{
+                                recyclerView.layoutManager = LinearLayoutManager(context)
+                                recyclerView.adapter = BaseRecyclerAdapter(recyclerdata(res, R.layout.main_fragment.some()))
+                                1
+                            }
+                            else -> {1 }
+                        }
                     }
             )
         }
