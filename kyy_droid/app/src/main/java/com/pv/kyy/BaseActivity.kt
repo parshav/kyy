@@ -10,7 +10,7 @@ typealias FragmentFunction = Option<() -> Boolean>
 
 sealed class LaunchData {
     object NoDataError : LaunchData()
-    class LaunchNextAmount : LaunchData()
+    class LaunchNextAmount(val elements: Array<Int>) : LaunchData()
 }
 
 abstract class BaseActivity : AppCompatActivity() {

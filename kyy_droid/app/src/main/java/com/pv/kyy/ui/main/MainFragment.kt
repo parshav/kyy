@@ -15,8 +15,12 @@ import com.pv.kyy.networking.NextFiveData.Launche
 import io.reactivex.subjects.BehaviorSubject
 import kotlin.properties.Delegates
 
-typealias NextFiveData = Either<LaunchData.NoDataError, LaunchData.LaunchNextAmount>
+typealias LaunchInfo = Either<LaunchData.NoDataError, LaunchData.LaunchNextAmount>
 typealias NextFiveRecyclerData = Pair<LaunchResult.LaunchTen, LayoutId>
+
+fun LaunchInfo.filterTwo() = this.map { it.elements.take(2) }
+
+fun LaunchInfo.removeLastLaunch() = this.map { it.elements.dropLast(1) }
 
 interface RecyclerDataBinder {
     fun bind()
@@ -65,7 +69,7 @@ object MainFragment : BaseFragment() {
                         when (res) {
                             is LaunchResult.LaunchTen ->{
                                 recyclerView.layoutManager = LinearLayoutManager(context)
-                                recyclerView.adapter = BaseRecyclerAdapter(recyclerdata(res, R.layout.main_fragment.some()))
+//                                recyclerView.adapter = BaseRecyclerAdapter(recyclerdata(res, R.layout.main_fragment.some()))
                                 1
                             }
                             else -> {1 }
@@ -77,7 +81,7 @@ object MainFragment : BaseFragment() {
 
     override fun dataObservable() = dataObservable
 
-    override fun layout(): LayoutId = none()
+    override fun layout(): LayoutId = R.layout.main_fragment.some()
 
     override fun runFn(): FragmentFunction = setupRecyclerView
 
