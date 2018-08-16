@@ -1,45 +1,21 @@
 import Behavior.CoreLife
 import org.jetbrains.annotations.TestOnly
+import java.lang.Exception
 import java.math.BigInteger
 import kotlin.math.nextDown
 import kotlin.math.roundToInt
+import kotlin.math.sqrt
 
 object Graveyard : CoreLife { // was Core
 
     override fun onStart() {
-        //assertEquals(expected = "aehrsty", actual = longest("aretheyhere", "yestheyarehere"))
-        /*if (longest("aretheyhere", "yestheyarehere") == "aehrsty")
-            println("we good")
-        else {
-            println("Test Fail : Actual Output -> ")
-            println(longest("aretheyhere", "yestheyarehere"))
-        }*/
-        //arethy   yesthar
-        //aehrty  aehrsty
-        //        aehrsty
-        //val a = dd(10,1)
-        //println("Middle : ${middle("midsle")}")
-        //print("2 : ${fn(4)}")
-
-//        print("multi : ${multiReplace("HI }")}")
-        /*'('.ascii()
-        ')'.ascii()
-        ')'.ascii()
-        '('.ascii()
-        '<'.ascii()
-        '>'.ascii()
-        '>'.ascii()
-        '<'.ascii()
-        '{'.ascii()
-        '}'.ascii()
-        '}'.ascii()
-        '{'.ascii()*/
-//        mutF(1)
-//        print(wallpaper(6.3, 4.5, 3.29))
-//        wallpaper(4.toDouble(), 3.5, 3.toDouble())
-//        println("potato : ${potato(99, 100, 98)}")
-//        println("potato : ${potato(82, 127, 80)}")
-//        bbgl()
+        val c = circ(1, 2, 3)
+        println("C next: ${c.next()}")
+        println("C next: ${c.next()}")
+        println("C next: ${c.next()}")
+        println("C prev: ${c.prev()}")
+        println("C prev: ${c.prev()}")
+        println("C prev: ${c.prev()}")
     }
 
     fun longest(a: String, b: String): String{
@@ -164,6 +140,28 @@ object Graveyard : CoreLife { // was Core
     // casting issues
     fun potato(p0: Int, w0: Int, p1: Int): Int = (w0 - ((p0 * w0).toDouble() / 100)).let { (it * 100) / (100 - p1) }.toInt()
 
+    fun ageGuess(ag1: Int, ag2: Int) {
+//        (arrayOf(age1, age2, age3, age4, age5, age6, age7, age8).map { it * it }.sum().let { sqrt(it.toDouble()) } / 2).roundToInt()
+    }
+
+    class circ<T>(vararg val elements: T) {
+
+        private var current = 0
+
+        init {
+            if (elements.isEmpty()) {
+                throw Exception()
+            }
+        }
+
+        fun next(): T {
+            return (if (current + 1 > elements.size) elements[0] else elements[current]).also { ++current }
+        }
+
+        fun prev(): T {
+            return (if (current - 1 < 0) elements.last().also { current = elements.size - 1 } else elements[current - 1].also { --current })
+        }
+    }
     override fun onEnd() {
 
     }

@@ -41,7 +41,7 @@ class NextFiveItemBinder(private val launch: Launche, private val itemView: View
 
 object MainFragment : BaseFragment() {
 
-    private val recyclerView: RecyclerView by lazy { view!!.findViewById<RecyclerView>(R.id.recycler_view) }
+//    private val recyclerView: RecyclerView by lazy { view!!.findViewById<RecyclerView>(R.id.recycler_view) }
 
     private var data by Delegates.observable<NewLaunchData>(LaunchResult.InitialState.right()) {
         _, _, new ->
@@ -51,7 +51,7 @@ object MainFragment : BaseFragment() {
     private val dataObservable: BehaviorSubject<NewLaunchData> = BehaviorSubject.create()
 
     private val setupRecyclerView= {
-        recyclerView
+//        recyclerView
         true
     }.some()
 
@@ -68,7 +68,7 @@ object MainFragment : BaseFragment() {
                     { res ->
                         when (res) {
                             is LaunchResult.LaunchTen ->{
-                                recyclerView.layoutManager = LinearLayoutManager(context)
+//                                recyclerView.layoutManager = LinearLayoutManager(context)
 //                                recyclerView.adapter = BaseRecyclerAdapter(recyclerdata(res, R.layout.main_fragment.some()))
                                 1
                             }
@@ -85,5 +85,5 @@ object MainFragment : BaseFragment() {
 
     override fun runFn(): FragmentFunction = setupRecyclerView
 
-    override fun fetch(): Either<None, LaunchData> = LaunchData.LaunchNextAmount().right()
+    override fun fetch(): Either<None, LaunchData> = LaunchData.LaunchNextAmount(emptyArray()).right()
 }
