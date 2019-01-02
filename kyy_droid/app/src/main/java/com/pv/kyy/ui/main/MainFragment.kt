@@ -1,6 +1,7 @@
 package com.pv.kyy.ui.main
 
 //import android.support.v7.widget.RecyclerView
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -39,7 +40,7 @@ class NextFiveItemBinder(private val launch: Launche, private val itemView: View
     }
 }
 
-object MainFragment : BaseFragment() {
+class MainFragment : BaseFragment() {
 
 //    private val recyclerView: RecyclerView by lazy { view!!.findViewById<RecyclerView>(R.id.recycler_view) }
 
@@ -59,6 +60,7 @@ object MainFragment : BaseFragment() {
         this.data = data
     }
 
+    @SuppressLint("CheckResult")
     override fun subscribeForData() {
         dataObservable.subscribe {
             it.fold(

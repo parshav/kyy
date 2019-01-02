@@ -1,7 +1,10 @@
+import Arw.Arw
+import dsl.DSLLife
+
 class Main {
     companion object {
 
-        private val life = Graveyard
+        private val life = DSLLife
 
         @JvmStatic fun main(args: Array<String>) {
             println("Kotlin main is running here!")

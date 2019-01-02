@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import arrow.core.Option
-import cat.mguellsegarra.myopic.MyopicActivity
 
 typealias LayoutId = Option<Int>
 typealias FragmentFunction = Option<() -> Boolean>
@@ -14,7 +13,7 @@ sealed class LaunchData {
     class LaunchNextAmount(val elements: Array<Int>) : LaunchData()
 }
 
-abstract class BaseActivity : MyopicActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +21,7 @@ abstract class BaseActivity : MyopicActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
 //            .replace(R.id.container, fragment())
-            .commitNow()
+                    .commitNow()
         }
     }
 

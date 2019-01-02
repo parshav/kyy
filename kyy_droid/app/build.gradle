@@ -46,8 +46,6 @@ dependencies {
     implementation "io.arrow-kt:arrow-instances-data:$arw_version"
     implementation "io.arrow-kt:arrow-effects:$arw_version"
 
-    implementation "cat.mguellsegarra:myopic:0.16"
-
     implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
 
     testImplementation 'junit:junit:4.12'

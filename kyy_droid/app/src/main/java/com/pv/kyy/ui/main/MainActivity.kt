@@ -5,5 +5,5 @@ import com.pv.kyy.BaseActivity
 
 class MainActivity : BaseActivity() {
 
-    override fun fragment(): Fragment = MainFragment
+    override fun fragment(): Fragment = MainFragment()
 }

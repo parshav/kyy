@@ -1,21 +1,23 @@
 import Behavior.CoreLife
-import org.jetbrains.annotations.TestOnly
 import java.lang.Exception
 import java.math.BigInteger
-import kotlin.math.nextDown
-import kotlin.math.roundToInt
-import kotlin.math.sqrt
 
 object Graveyard : CoreLife { // was Core
 
     override fun onStart() {
-        val c = circ(1, 2, 3)
-        println("C next: ${c.next()}")
-        println("C next: ${c.next()}")
-        println("C next: ${c.next()}")
-        println("C prev: ${c.prev()}")
-        println("C prev: ${c.prev()}")
-        println("C prev: ${c.prev()}")
+
+        f("")
+    }
+
+    fun partlist(arr: Array<String>): Array<Array<String>> {
+
+        var mutableList = mutableListOf<Array<String>>()
+
+        arr.forEachIndexed { i, _ ->
+            mutableList.add(i, arrayOf(arr.take(i).joinToString(" "), arr.takeLast(arr.size - i).joinToString(" ")))
+        }
+        mutableList.removeAt(0)
+        return mutableList.toTypedArray()
     }
 
     fun longest(a: String, b: String): String{
@@ -166,3 +168,80 @@ object Graveyard : CoreLife { // was Core
 
     }
 }
+
+operator fun<T> String.invoke(data: T): String {
+    return data.toString()
+}
+
+operator fun Int.get(data: String): Int {
+    val a = 1
+    a(" ")
+    return data.toInt()
+}
+operator fun Int.invoke(data: String) = data.toInt()
+operator fun Long.invoke(data: String) = data.toLong()
+operator fun Double.invoke(data: String) = data.toDouble()
+
+fun unless(bool: Boolean, block: () -> (Unit)) {
+    if (!bool) {
+        block.invoke()
+    }
+}
+
+fun until(cond: () -> (Boolean), block: () -> (Unit)) {
+    while (!cond.invoke()) {
+        block.invoke()
+    }
+}
+
+fun forceRun(block: () -> (Unit)) {
+    try {
+        block.invoke()
+    } catch (e: Exception) {
+
+    }
+}
+
+data class Box(var x: Int, var y: Int, var width: Int, var height: Int) {
+    fun area() = width * height
+    fun rightDown() = width + x to height + y
+    fun rightUp() = width + x to height
+    fun leftDown() = width to (height + y)
+
+    /*operator fun invoke(init: Box.()->Unit): Box {
+        val abc = Box()
+        abc.init()
+        return abc
+    }*/
+}
+
+operator fun Box.invoke(init: Box.()->Unit): Box {
+    val box = this
+    this.init()
+    val a = "asd"
+    val c = a.onEach{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}
+    return box
+}
+
+
+
+val a={a:String->a.map{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}.joinToString("")}
+
+fun f(s: String)=s.map{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}.joinToString("")
+fun ff(a: String) = a.onEach{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}
+
+fun s(s: String): String {
+    //return s.map{when(it){'('->')'')'->'(''<'->'>''>'->'<''{'->'}''}'->'{' else->it}}.joinToString("")
+    /*return s.map {
+        when(it) {
+            '<','{'->it+2
+            '>','}'->it-2
+            '('->it+1
+            ')'->it-1
+            else -> it
+        }
+    }.joinToString("")*/
+    return ""
+}
+
+

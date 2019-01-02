@@ -2,19 +2,17 @@ package dsl
 
 class House {
 
+    private val rooms = mutableListOf<Room>()
     fun test() {
         val a = build()
     }
 
-    fun house(init: House.() -> (Unit)): House {
-        val house = House()
-        house.init()
-        return house
-    }
+
 
     fun room(init: Room.() -> (Unit)): Room {
         val room = Room()
         room.init()
+        rooms.add(room)
         return room
     }
 
@@ -24,13 +22,22 @@ class House {
 
             }
             room {
-                +"String is this"
+
             }
         }
     }
-
-    operator fun String.unaryPlus() {
-        println(this)
-    }
 }
 class Room
+
+fun house(init: House.() -> (Unit)): House {
+    val house = House()
+    house.init()
+    return house
+}
+
+fun mouse(init: (House) -> (Unit)): House {
+    val house = House()
+    init.invoke(house)
+    return house
+}
+fun hello() = Unit
