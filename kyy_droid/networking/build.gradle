@@ -17,7 +17,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -37,10 +36,14 @@ dependencies {
     implementation "io.arrow-kt:arrow-instances-data:$arw_version"
     implementation "io.arrow-kt:arrow-effects:$arw_version"
 
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
 
-    application project(':app')
+    implementation project(':base')
+//    application project(':app')
 }
