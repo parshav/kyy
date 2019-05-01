@@ -1,0 +1,5 @@
+kyy_droid/.idea/
+kyy_droid/.idea/workspace.xml
+*.ser
+kyy_droid/base/build/
+kyy_droid/networking/

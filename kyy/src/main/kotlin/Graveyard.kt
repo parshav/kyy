@@ -1,45 +1,23 @@
 import Behavior.CoreLife
-import org.jetbrains.annotations.TestOnly
+import java.lang.Exception
 import java.math.BigInteger
-import kotlin.math.nextDown
-import kotlin.math.roundToInt
 
 object Graveyard : CoreLife { // was Core
 
     override fun onStart() {
-        //assertEquals(expected = "aehrsty", actual = longest("aretheyhere", "yestheyarehere"))
-        /*if (longest("aretheyhere", "yestheyarehere") == "aehrsty")
-            println("we good")
-        else {
-            println("Test Fail : Actual Output -> ")
-            println(longest("aretheyhere", "yestheyarehere"))
-        }*/
-        //arethy   yesthar
-        //aehrty  aehrsty
-        //        aehrsty
-        //val a = dd(10,1)
-        //println("Middle : ${middle("midsle")}")
-        //print("2 : ${fn(4)}")
 
-//        print("multi : ${multiReplace("HI }")}")
-        /*'('.ascii()
-        ')'.ascii()
-        ')'.ascii()
-        '('.ascii()
-        '<'.ascii()
-        '>'.ascii()
-        '>'.ascii()
-        '<'.ascii()
-        '{'.ascii()
-        '}'.ascii()
-        '}'.ascii()
-        '{'.ascii()*/
-//        mutF(1)
-//        print(wallpaper(6.3, 4.5, 3.29))
-//        wallpaper(4.toDouble(), 3.5, 3.toDouble())
-//        println("potato : ${potato(99, 100, 98)}")
-//        println("potato : ${potato(82, 127, 80)}")
-//        bbgl()
+        f("")
+    }
+
+    fun partlist(arr: Array<String>): Array<Array<String>> {
+
+        var mutableList = mutableListOf<Array<String>>()
+
+        arr.forEachIndexed { i, _ ->
+            mutableList.add(i, arrayOf(arr.take(i).joinToString(" "), arr.takeLast(arr.size - i).joinToString(" ")))
+        }
+        mutableList.removeAt(0)
+        return mutableList.toTypedArray()
     }
 
     fun longest(a: String, b: String): String{
@@ -164,7 +142,106 @@ object Graveyard : CoreLife { // was Core
     // casting issues
     fun potato(p0: Int, w0: Int, p1: Int): Int = (w0 - ((p0 * w0).toDouble() / 100)).let { (it * 100) / (100 - p1) }.toInt()
 
+    fun ageGuess(ag1: Int, ag2: Int) {
+//        (arrayOf(age1, age2, age3, age4, age5, age6, age7, age8).map { it * it }.sum().let { sqrt(it.toDouble()) } / 2).roundToInt()
+    }
+
+    class circ<T>(vararg val elements: T) {
+
+        private var current = 0
+
+        init {
+            if (elements.isEmpty()) {
+                throw Exception()
+            }
+        }
+
+        fun next(): T {
+            return (if (current + 1 > elements.size) elements[0] else elements[current]).also { ++current }
+        }
+
+        fun prev(): T {
+            return (if (current - 1 < 0) elements.last().also { current = elements.size - 1 } else elements[current - 1].also { --current })
+        }
+    }
     override fun onEnd() {
 
     }
 }
+
+operator fun<T> String.invoke(data: T): String {
+    return data.toString()
+}
+
+operator fun Int.get(data: String): Int {
+    val a = 1
+    a(" ")
+    return data.toInt()
+}
+operator fun Int.invoke(data: String) = data.toInt()
+operator fun Long.invoke(data: String) = data.toLong()
+operator fun Double.invoke(data: String) = data.toDouble()
+
+fun unless(bool: Boolean, block: () -> (Unit)) {
+    if (!bool) {
+        block.invoke()
+    }
+}
+
+fun until(cond: () -> (Boolean), block: () -> (Unit)) {
+    while (!cond.invoke()) {
+        block.invoke()
+    }
+}
+
+fun forceRun(block: () -> (Unit)) {
+    try {
+        block.invoke()
+    } catch (e: Exception) {
+
+    }
+}
+
+data class Box(var x: Int, var y: Int, var width: Int, var height: Int) {
+    fun area() = width * height
+    fun rightDown() = width + x to height + y
+    fun rightUp() = width + x to height
+    fun leftDown() = width to (height + y)
+
+    /*operator fun invoke(init: Box.()->Unit): Box {
+        val abc = Box()
+        abc.init()
+        return abc
+    }*/
+}
+
+operator fun Box.invoke(init: Box.()->Unit): Box {
+    val box = this
+    this.init()
+    val a = "asd"
+    val c = a.onEach{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}
+    return box
+}
+
+
+
+val a={a:String->a.map{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}.joinToString("")}
+
+fun f(s: String)=s.map{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}.joinToString("")
+fun ff(a: String) = a.onEach{it+when(it){'<','{'->2 '>','}'->-2 '('->1 ')'->-1 else->0}}
+
+fun s(s: String): String {
+    //return s.map{when(it){'('->')'')'->'(''<'->'>''>'->'<''{'->'}''}'->'{' else->it}}.joinToString("")
+    /*return s.map {
+        when(it) {
+            '<','{'->it+2
+            '>','}'->it-2
+            '('->it+1
+            ')'->it-1
+            else -> it
+        }
+    }.joinToString("")*/
+    return ""
+}
+
+
